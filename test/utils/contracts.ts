@@ -1,3 +1,4 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { Wallet } from "ethers";
 import { deployContract } from "./setup";
 
@@ -32,4 +33,4 @@ contract Test {
         revert("Why are you doing this?");
     }
 }`
-export const killLibContract = async (deployer: Wallet) => { return await deployContract(deployer, killLibSource) };
+export const killLibContract = async (deployer: SignerWithAddress) => { return await deployContract(deployer, killLibSource) };

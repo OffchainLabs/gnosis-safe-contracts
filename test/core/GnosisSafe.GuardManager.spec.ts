@@ -9,7 +9,7 @@ import { chainId } from "../utils/encoding";
 
 describe("GuardManager", async () => {
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     const setupWithTemplate = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

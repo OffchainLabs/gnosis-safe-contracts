@@ -12,7 +12,9 @@ import { chainId, encodeTransfer } from "../utils/encoding";
 
 describe("GnosisSafe", async () => {
 
-    const [user1, user2, user3] = waffle.provider.getWallets();
+    const [user1, user2, user3] = await hre.ethers.getSigners();
+    console.warn('user1',user1 );
+    
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

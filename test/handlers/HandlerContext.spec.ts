@@ -6,7 +6,7 @@ import { getSafeTemplate } from "../utils/setup";
 
 describe("HandlerContext", async () => {
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     const setup = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

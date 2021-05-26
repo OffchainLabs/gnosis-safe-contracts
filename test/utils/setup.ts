@@ -4,6 +4,7 @@ import { AddressZero } from "@ethersproject/constants";
 import solc from "solc"
 import { logGas } from "../../src/utils/execution";
 import { safeContractUnderTest } from "./config";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 export const defaultCallbackHandlerDeployment = async () => {
     return await deployments.get("DefaultCallbackHandler");
@@ -126,9 +127,9 @@ export const compile = async (source: string) => {
     }
 }
 
-export const deployContract = async (deployer: Wallet, source: string): Promise<Contract> => {
+export const deployContract = async (deployer: SignerWithAddress, source: string): Promise<Contract> => {
     const output = await compile(source)
-    const transaction = await deployer.sendTransaction({ data: output.data, gasLimit: 6000000 })
+    const transaction = await deployer.sendTransaction({ data: output.data, gasLimit: 60000000 })
     const receipt = await transaction.wait()
     return new Contract(receipt.contractAddress, output.interface, deployer)
 }

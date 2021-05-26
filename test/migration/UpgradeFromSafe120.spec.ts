@@ -8,9 +8,10 @@ import { verificationTests } from "./subTests.spec";
 import deploymentData from "../json/safeDeployment.json";
 import { calculateProxyAddress } from "../../src/utils/proxies";
 
-describe("Upgrade from Safe 1.2.0", () => {
+describe("Upgrade from Safe 1.2.0", async () => {
 
-    const [user1] = waffle.provider.getWallets();
+    // const [user1] = await hre.ethers.getSigners();
+    const [user1]= (await hre.ethers.getSigners())
 
     const ChangeMasterCopyInterface = new ethers.utils.Interface(["function changeMasterCopy(address target)"])
 

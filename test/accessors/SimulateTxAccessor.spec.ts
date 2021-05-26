@@ -7,7 +7,7 @@ import { parseEther } from "ethers/lib/utils";
 
 describe("SimulateTxAccessor", async () => {
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

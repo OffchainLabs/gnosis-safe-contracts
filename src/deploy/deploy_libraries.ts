@@ -12,21 +12,21 @@ const deploy: DeployFunction = async function (
     from: deployer,
     args: [],
     log: true,
-    deterministicDeployment: true,
+    deterministicDeployment: false,
   });
 
   await deploy("MultiSend", {
     from: deployer,
     args: [],
     log: true,
-    deterministicDeployment: true,
+    deterministicDeployment: false,
   });
 
   await deploy("MultiSendCallOnly", {
     from: deployer,
     args: [],
     log: true,
-    deterministicDeployment: true,
+    deterministicDeployment: false,
   });
 };
 

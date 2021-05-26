@@ -91,6 +91,10 @@ const userConfig: HardhatUserConfig = {
       ...sharedNetworkConfig,
       url: `https://volta-rpc.energyweb.org`,
     },
+    arbKovan5: {
+      ...sharedNetworkConfig,
+      url: `https://kovan5.arbitrum.io/rpc`,
+    },
   },
   namedAccounts: {
     deployer: 0,

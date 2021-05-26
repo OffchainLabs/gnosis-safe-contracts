@@ -33,7 +33,7 @@ describe("ProxyFactory", async () => {
         }
     }`
 
-    const [user1] = waffle.provider.getWallets();
+    const [user1] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture()
@@ -49,7 +49,11 @@ describe("ProxyFactory", async () => {
     describe("createProxy", async () => {
 
         it('should revert with invalid singleton address', async () => {
+            console.warn('settng up tests');
+            
             const { factory } = await setupTests()
+            console.warn('factory', factory);
+            
             await expect(
                 factory.createProxy(AddressZero, "0x")
             ).to.be.revertedWith("Invalid singleton address provided")

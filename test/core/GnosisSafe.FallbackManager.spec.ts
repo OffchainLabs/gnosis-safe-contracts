@@ -27,7 +27,7 @@ describe("FallbackManager", async () => {
         }
     })
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     describe("setFallbackManager", async () => {
         it('is correctly set on deployment', async () => {

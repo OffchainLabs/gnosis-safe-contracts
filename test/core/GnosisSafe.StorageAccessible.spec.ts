@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { deployments, waffle } from "hardhat";
+import hre, { deployments, waffle } from "hardhat";
 import "@nomiclabs/hardhat-ethers";
 import { getSafeSingleton, getDefaultCallbackHandler, getSafeWithOwners } from "../utils/setup";
 import { utils } from "ethers";
@@ -7,12 +7,14 @@ import { killLibContract } from "../utils/contracts";
 
 describe("StorageAccessible", async () => {
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();
         const handler = await getDefaultCallbackHandler()
+
         const killLib = await killLibContract(user1);
+        
         return {
             safe: await getSafeWithOwners([user1.address, user2.address], 1, handler.address),
             killLib,

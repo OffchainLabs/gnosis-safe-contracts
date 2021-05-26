@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ethers, deployments, waffle } from "hardhat";
+import hre, { ethers, deployments, waffle } from "hardhat";
 import "@nomiclabs/hardhat-ethers";
 import { AddressZero } from "@ethersproject/constants";
 import { getSafeWithOwners, getSafeSingleton, migrationContract } from "../utils/setup";
@@ -13,7 +13,7 @@ describe("Migration", async () => {
         "function masterCopy() view returns(address)",
     ])
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

@@ -7,7 +7,7 @@ import { chainId } from "../utils/encoding";
 
 describe("DebugTransactionGuard", async () => {
 
-    const [user1] = waffle.provider.getWallets();
+    const [user1] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

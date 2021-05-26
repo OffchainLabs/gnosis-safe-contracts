@@ -20,7 +20,7 @@ describe("GnosisSafe", async () => {
         }
     })
 
-    const [user1, user2] = waffle.provider.getWallets();
+    const [user1, user2] = await hre.ethers.getSigners();
 
     describe("ERC1155", async () => {
         it('should reject if callback not accepted', async () => {

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { deployments, waffle } from "hardhat";
+import hre, { deployments, waffle } from "hardhat";
 import "@nomiclabs/hardhat-ethers";
 import { AddressZero } from "@ethersproject/constants";
 import { getSafeTemplate, getSafeWithOwners } from "../utils/setup";
@@ -8,7 +8,7 @@ import { chainId } from "../utils/encoding";
 
 describe("GnosisSafe", async () => {
 
-    const [user1, user2, user3, user4] = waffle.provider.getWallets()
+    const [user1, user2, user3, user4] = await hre.ethers.getSigners()
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();

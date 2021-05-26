@@ -1,6 +1,7 @@
 import { Contract, Wallet, utils, BigNumber, BigNumberish, Signer, PopulatedTransaction } from "ethers"
 import { TypedDataSigner } from "@ethersproject/abstract-signer";
 import { AddressZero } from "@ethersproject/constants";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 export const EIP_DOMAIN = {
     EIP712Domain: [
@@ -149,12 +150,12 @@ export const buildContractCall = (contract: Contract, method: string, params: an
     }, overrides))
 }
 
-export const executeTxWithSigners = async (safe: Contract, tx: SafeTransaction, signers: Wallet[], overrides?: any) => {
+export const executeTxWithSigners = async (safe: Contract, tx: SafeTransaction, signers: SignerWithAddress[], overrides?: any) => {
     const sigs = await Promise.all(signers.map((signer) => safeSignTypedData(signer, safe, tx)))
     return executeTx(safe, tx, sigs, overrides)
 }
 
-export const executeContractCallWithSigners = async (safe: Contract, contract: Contract, method: string, params: any[], signers: Wallet[], delegateCall?: boolean, overrides?: Partial<SafeTransaction>) => {
+export const executeContractCallWithSigners = async (safe: Contract, contract: Contract, method: string, params: any[], signers: SignerWithAddress[], delegateCall?: boolean, overrides?: Partial<SafeTransaction>) => {
     const tx = buildContractCall(contract, method, params, await safe.nonce(), delegateCall, overrides)
     return executeTxWithSigners(safe, tx, signers)
 }

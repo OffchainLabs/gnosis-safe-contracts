@@ -6,7 +6,7 @@ import { parseEther } from "@ethersproject/units";
 
 describe("GnosisSafe", async () => {
 
-    const [user1] = waffle.provider.getWallets();
+    const [user1] = await hre.ethers.getSigners();
 
     const setupTests = deployments.createFixture(async ({ deployments }) => {
         await deployments.fixture();
